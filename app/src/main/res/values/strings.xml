@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TB Pemob</string>
+    <string name="fauzan_pramulia">Fauzan Pramulia</string>
+    <string name="_1511522019">1511522019</string>
+    <string name="matakuliah">Matakuliah</string>
+    <string name="statistika_dan_probabilistik_bisnis">Statistika dan Probabilistik Bisnis</string>
+    <string name="kelas">Kelas</string>
+    <string name="_01_a">01 (A)</string>
+    <string name="nama_mahasiswa">Nama Mahasiswa</string>
+    <string name="nim">NIM</string>
+    <string name="_29_september_2018">29 September 2018</string>
+    <string name="_10_00_wib">10.00 WIB</string>
+    <string name="read_file">This app needs access to your file storage so that it can read photos.</string>
+</resources>
