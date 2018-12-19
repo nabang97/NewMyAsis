@@ -64,7 +64,13 @@ public class MahasiswaAdapter extends RecyclerView.Adapter<MahasiswaAdapter.Maha
                 holder.textMataKuliah.setText(mahasiswa.getMata_kuliah());
                 holder.textWaktu.setText(waktuString);
 
-                String url = "http://192.168.1.6:8000/image/" + mahasiswa.getFoto();
+                if(mahasiswa.getStatus() == 1){
+                    holder.rvIcon.setImageResource(R.drawable.like_checked);
+                }else{
+                    holder.rvIcon.setImageResource(R.drawable.like_unchecked);
+                }
+
+                String url = "http://10.44.7.157:8000/image/" + mahasiswa.getFoto();
                 Glide.with(holder.itemView)
                         .load(url)
                         .into(holder.imageFoto);
@@ -97,6 +103,7 @@ public class MahasiswaAdapter extends RecyclerView.Adapter<MahasiswaAdapter.Maha
         TextView textMataKuliah;
         TextView textWaktu;
         RelativeLayout view_container;
+        ImageView rvIcon;
 
         public MahasiswaHolder(View itemView) {
             super(itemView);
@@ -107,6 +114,7 @@ public class MahasiswaAdapter extends RecyclerView.Adapter<MahasiswaAdapter.Maha
             textMataKuliah = itemView.findViewById(R.id.textMataKuliah);
             textWaktu = itemView.findViewById(R.id.textWaktu);
             imageFoto = itemView.findViewById(R.id.imageSelfie);
+            rvIcon = itemView.findViewById(R.id.rv_icon);
             view_container = (RelativeLayout) itemView.findViewById(R.id.container);
         }
     }

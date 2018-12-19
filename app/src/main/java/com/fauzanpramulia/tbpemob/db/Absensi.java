@@ -26,4 +26,7 @@ public class Absensi {
 
     @ColumnInfo(name = "created_at")
     public String created_at;
+
+    @ColumnInfo(name = "status")
+    public int status;
 }

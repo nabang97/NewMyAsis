@@ -16,8 +16,9 @@ public class MahasiswaItems implements Parcelable {
         public String mata_kuliah;
         public String foto;
         public String created_at;
+        public int status;
 
-    public MahasiswaItems(int id, String bp, String nama, String kelas, String mata_kuliah, String foto, String created_at) {
+    public MahasiswaItems(int id, String bp, String nama, String kelas, String mata_kuliah, String foto, String created_at, int status) {
         this.id = id;
         this.bp = bp;
         this.nama = nama;
@@ -25,6 +26,7 @@ public class MahasiswaItems implements Parcelable {
         this.mata_kuliah = mata_kuliah;
         this.foto = foto;
         this.created_at = created_at;
+        this.status = status;
     }
 
     public MahasiswaItems() {
@@ -86,6 +88,11 @@ public class MahasiswaItems implements Parcelable {
         this.created_at = created_at;
     }
 
+    public int getStatus() { return status; }
+
+    public void setStatus(int status) { this.status = status; }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -100,6 +107,7 @@ public class MahasiswaItems implements Parcelable {
         dest.writeString(this.mata_kuliah);
         dest.writeString(this.foto);
         dest.writeString(this.created_at);
+        dest.writeInt(this.status);
     }
 
     protected MahasiswaItems(Parcel in) {
@@ -110,6 +118,7 @@ public class MahasiswaItems implements Parcelable {
         this.mata_kuliah = in.readString();
         this.foto = in.readString();
         this.created_at = in.readString();
+        this.status = in.readInt();
     }
 
     public static final Creator<MahasiswaItems> CREATOR = new Creator<MahasiswaItems>() {

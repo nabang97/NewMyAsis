@@ -268,13 +268,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/frameLayout2">
 
-            <CheckBox
-                android:id="@+id/checkBox"
+            <ImageView
+                android:id="@+id/favorite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:button="@drawable/favorite_btn"
-                android:foregroundGravity="center_vertical|fill_vertical|center_horizontal|fill_horizontal" />
-
+                app:srcCompat="@drawable/like_two_unchecked" />
         </FrameLayout>
 
 

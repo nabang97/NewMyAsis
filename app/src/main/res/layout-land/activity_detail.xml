@@ -246,8 +246,7 @@
             android:padding="10dp"
             android:translationZ="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.485"
+            app:layout_constraintEnd_toStartOf="@+id/frameLayout3"
             app:layout_constraintStart_toEndOf="@+id/imageDetail">
 
             <Button
@@ -257,6 +256,24 @@
                 android:background="@drawable/ic_share_black_24dp"
                 tools:layout_editor_absoluteX="161dp"
                 tools:layout_editor_absoluteY="701dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
+            android:layout_marginRight="84dp"
+            android:translationZ="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayout2">
+
+            <ImageView
+                android:id="@+id/favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/like_two_unchecked" />
         </FrameLayout>
 
     </android.support.constraint.ConstraintLayout>

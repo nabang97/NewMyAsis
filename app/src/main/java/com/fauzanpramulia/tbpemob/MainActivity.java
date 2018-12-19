@@ -73,11 +73,64 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    public void getFavoriteAbsensi() {
+//        String API_BASE_URL = "http://10.44.7.170:8000/api/";
+        progressBar.setVisibility(View.VISIBLE);
+        if (isConnected()) {
+            String API_BASE_URL = "http://10.44.7.157:8000/api/";
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(API_BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            AbsensiClient client = retrofit.create(AbsensiClient.class);
+
+            Call<List<MahasiswaItems>> call = client.getFavoriteAbsen();
+            call.enqueue(new Callback<List<MahasiswaItems>>() {
+                @Override
+                public void onResponse(Call<List<MahasiswaItems>> call, Response<List<MahasiswaItems>> response) {
+                    List<MahasiswaItems> absenList = response.body();
+                    daftarAbsen = absenList;
+                    saveMovieToDb(absenList);
+                    adapter.setDataMahasiswa((ArrayList<MahasiswaItems>) absenList);
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
+
+                @Override
+                public void onFailure(Call<List<MahasiswaItems>> call, Throwable t) {
+                    //Disini kode kalau error
+                    Toast.makeText(MainActivity.this, "Gagal Load Data", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        else {
+            //ambil data ke db
+            List<Absensi> absensis = db.absensiDao().getAllAbsen();
+            ArrayList<MahasiswaItems> absensi = new ArrayList<>();
+            for (Absensi n : absensis) {
+                MahasiswaItems m = new MahasiswaItems(
+                        n.id,
+                        n.bp,
+                        n.nama,
+                        n.kelas,
+                        n.mata_kuliah,
+                        n.foto,
+                        n.created_at,
+                        n.status
+                );
+                absensi.add(m);
+            }
+
+            daftarAbsen = absensi;
+            adapter.setDataMahasiswa(absensi);
+            progressBar.setVisibility(View.INVISIBLE);
+        }
+    }
+
     public void getAbsensi() {
 //        String API_BASE_URL = "http://10.44.7.170:8000/api/";
         progressBar.setVisibility(View.VISIBLE);
         if (isConnected()) {
-            String API_BASE_URL = "http://192.168.1.6:8000/api/";
+            String API_BASE_URL = "http://10.44.7.157:8000/api/";
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(API_BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
@@ -114,7 +167,8 @@ public class MainActivity extends AppCompatActivity {
                         n.kelas,
                         n.mata_kuliah,
                         n.foto,
-                        n.created_at
+                        n.created_at,
+                        n.status
                 );
                 absensi.add(m);
             }
@@ -153,6 +207,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.addAbsen:
                 Intent addDataActivityIntent = new Intent(MainActivity.this, InsertActivity.class);
                 startActivity(addDataActivityIntent);
+                break;
+            case R.id.favorite_menu:
+                getFavoriteAbsensi();
                 break;
 
             case R.id.refreshAbsen:

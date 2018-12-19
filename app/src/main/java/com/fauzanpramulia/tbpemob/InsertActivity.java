@@ -103,7 +103,7 @@ public class InsertActivity extends AppCompatActivity implements EasyPermissions
     private void insertAbsen(){
         //Here we will handle the http request to insert user to mysql db
         //Creating a RestAdapter
-        String API_BASE_URL = "http://192.168.1.6:8000/api/";
+        String API_BASE_URL = "10.44.7.157:8000/api/";
 
         Retrofit adapter = new Retrofit.Builder()
                 .baseUrl(API_BASE_URL) //Setting the Root URL

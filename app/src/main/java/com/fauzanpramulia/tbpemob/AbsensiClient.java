@@ -34,6 +34,13 @@ public interface AbsensiClient {
             @Part MultipartBody.Part filePart,
             @Part("name") RequestBody foto);
 
+    @FormUrlEncoded
+    @POST("absensi/favorite/update")
+    Call<ResponseBody> updateStatus(@Field("id") Integer id);
+
+    @GET("absensi/favorite")
+    Call<List<MahasiswaItems>> getFavoriteAbsen();
+
 //    @POST("my/files/photo/")
 //    Call<FileUploadResponse> uploadPhoto(@Header("Content-Type") String contentType,
 //                                         @Header("Authorization") String auth,
